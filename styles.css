@@ -533,6 +533,268 @@ button {
     opacity: 1;
 }
 
+/* Sección de frases célebres */
+.phrases-section {
+    background: linear-gradient(135deg, #fff5fb 0%, #f0f5ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.phrases-section::after {
+    content: '😂';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    animation: float 3s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.phrases-section::before {
+    content: '❤️';
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    font-size: 30px;
+    animation: float 4s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.phrases-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    overflow-y: auto;
+    max-height: 70vh;
+    align-items: center;
+}
+
+.phrases-intro {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-1deg);
+    border: 2px solid var(--primary-light);
+}
+
+.phrases-intro::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 8s infinite;
+    pointer-events: none;
+}
+
+.phrases-intro p {
+    position: relative;
+    z-index: 2;
+    font-weight: 500;
+}
+
+.phrases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 15px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.phrase-item {
+    display: flex;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 18px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    border-left: 4px solid var(--primary-color);
+}
+
+.phrases-section.active .phrase-item {
+    animation: fadeInUp 0.5s forwards;
+}
+
+.phrases-section.active .phrase-item:nth-child(1) { animation-delay: 0.1s; }
+.phrases-section.active .phrase-item:nth-child(2) { animation-delay: 0.2s; }
+.phrases-section.active .phrase-item:nth-child(3) { animation-delay: 0.3s; }
+.phrases-section.active .phrase-item:nth-child(4) { animation-delay: 0.4s; }
+.phrases-section.active .phrase-item:nth-child(5) { animation-delay: 0.5s; }
+.phrases-section.active .phrase-item:nth-child(6) { animation-delay: 0.6s; }
+.phrases-section.active .phrase-item:nth-child(7) { animation-delay: 0.7s; }
+.phrases-section.active .phrase-item:nth-child(8) { animation-delay: 0.8s; }
+.phrases-section.active .phrase-item:nth-child(9) { animation-delay: 0.9s; }
+.phrases-section.active .phrase-item:nth-child(10) { animation-delay: 1s; }
+
+.phrase-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.phrase-item:nth-child(odd) {
+    transform: translateY(20px) rotate(1deg);
+    border-left: none;
+    border-right: 4px solid var(--secondary-color);
+}
+
+.phrase-item:nth-child(odd):hover {
+    transform: translateY(-5px) rotate(1deg) scale(1.02);
+}
+
+.phrase-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.phrase-item:hover .phrase-number {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.phrase-text {
+    flex: 1;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 2;
+}
+
+.phrase-context {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Estilos alternados para las frases */
+.phrase-item:nth-child(even) {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+}
+
+.phrase-item:nth-child(odd) {
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+}
+
+.phrase-item:nth-child(3n) .phrase-number {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+.phrase-item:nth-child(3n+1) .phrase-number {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+
+.phrase-item:nth-child(3n+2) .phrase-number {
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+
+/* Añadir emojis a las frases */
+.phrase-item:nth-child(1)::after { content: '🧣'; }
+.phrase-item:nth-child(2)::after { content: '📢'; }
+.phrase-item:nth-child(3)::after { content: '🍽️'; }
+.phrase-item:nth-child(4)::after { content: '👑'; }
+.phrase-item:nth-child(5)::after { content: '👗'; }
+.phrase-item:nth-child(6)::after { content: '👶'; }
+.phrase-item:nth-child(7)::after { content: '📱'; }
+.phrase-item:nth-child(8)::after { content: '😤'; }
+.phrase-item:nth-child(9)::after { content: '🏨'; }
+.phrase-item:nth-child(10)::after { content: '💖'; }
+
+.phrase-item::after {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    font-size: 24px;
+    opacity: 0.2;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.phrase-item:hover::after {
+    opacity: 1;
+    transform: scale(1.5) rotate(10deg);
+    right: 20px;
+    bottom: 15px;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 480px) {
+    .phrases-content {
+        padding: 10px 0;
+    }
+    
+    .phrases-intro {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .phrase-item {
+        padding: 15px;
+    }
+    
+    .phrase-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+    
+    .phrase-text {
+        font-size: 0.95rem;
+    }
+    
+    .phrase-context {
+        font-size: 0.8rem;
+    }
+    
+    .phrase-item::after {
+        font-size: 20px;
+        right: 10px;
+        bottom: 8px;
+    }
+}
+
 /* Modal de fotos */
 .photo-modal {
     position: fixed;
@@ -957,6 +1219,7 @@ footer::before {
     opacity: 0.9 !important;
     transition: transform 0.1s ease, opacity 0.1s ease !important;
 }
+
 /* Estilos para elementos animados */
 .animated {
     animation: fadeInUp 0.8s ease forwards;
